@@ -81,4 +81,8 @@ extension UsersViewController : UITableViewDelegate, UITableViewDataSource {
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+         return 50 // custom height
+    }
+    
 }
