@@ -31,8 +31,9 @@ class UsersViewController: UIViewController, NetworkManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         networkManager.delegate = self
-        getUsers()
         configureViewController()
+        getUsers()
+        
     }
     
     /**
@@ -40,19 +41,16 @@ class UsersViewController: UIViewController, NetworkManagerDelegate{
      */
     func getUsers() {
         networkManager.getUsers()
-        //tableView.reloadData()
-        
+        print("networkManager.getUsers() returned")
     }
     
     func usersRetrieved(users: [User]) {
-        print("Got \(users.count) users back to UsersViewController")
+        print("UsersViewController received \(users.count) users")
         self.users = users
-        for user in self.users {
-            print(user.email)
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
     }
     
 }
@@ -60,7 +58,6 @@ class UsersViewController: UIViewController, NetworkManagerDelegate{
 extension UsersViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("table size is \(users.count)")
         return users.count
     }
     
@@ -79,10 +76,6 @@ extension UsersViewController : UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         //register custom Nib for table view
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-         return 50 // custom height
     }
     
 }

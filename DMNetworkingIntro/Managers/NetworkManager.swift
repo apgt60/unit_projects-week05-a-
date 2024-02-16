@@ -55,8 +55,12 @@ class NetworkManager {
                 return
             }
             
-            let dataString = String(data: data!, encoding: .utf8)
-            print(dataString!)
+//            print("sleeping")
+//            sleep(1)
+//            print("getting users from server")
+            
+//            let dataString = String(data: data!, encoding: .utf8)
+//            print(dataString!)
             
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -64,7 +68,7 @@ class NetworkManager {
             do {
                 // 3.3 Use the provided `decoder` to decode the data into a `UserResponse` object.
                 let decodedData = try decoder.decode(UserResponse.self, from: data!)
-                print("Received \(decodedData.total) users from API")
+                //print("Received \(decodedData.total) users from API")
                 
                 // 3.4 Call the `delegate`'s `usersRetrieved` function, passing the `data` array from the decoded `UserResponse`.
                 self.delegate?.usersRetrieved(users: decodedData.data)
@@ -75,4 +79,5 @@ class NetworkManager {
         
         task.resume()
     }
+    
 }
