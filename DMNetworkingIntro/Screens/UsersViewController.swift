@@ -7,52 +7,53 @@
 
 import UIKit
 
-/**
- 1. Create the user interface. See the provided screenshot for how the UI should look.
- 2. Follow the instructions in the `User` file.
- 3. Follow the instructions in the `NetworkManager` file.
- */
-class UsersViewController: UIViewController, NetworkManagerDelegate{
+class UsersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     
     var networkManager = NetworkManager.shared
     
-    /**
-     4. Create a variable called `users` and set it to an empty array of `User` objects.
-     */
     var users = [User]()
-    
-    /**
-     5. Connect the UITableView to the code. Create a function called `configureTableView` that configures the table view. You may find the `Constants` file helpful. Make sure to call the function in the appropriate spot.
-     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkManager.delegate = self
         configureViewController()
         getUsers()
         
     }
     
-    /**
-     6.1 Set the `NetworkManager`'s delegate property to the `UsersViewController`. Have the `UsersViewController` conform to the `NetworkManagerDelegate` protocol. Call the `NetworkManager`'s `getUsers` function. In the `usersRetrieved` function, assign the `users` property to the array we got back from the API and call `reloadData` on the table view.
+    /*
+    3.1 Modify the UsersViewController to use the completion closure instead of the NetworkManagerDelegate.
      */
     func getUsers() {
-        networkManager.getUsers()
-        print("networkManager.getUsers() returned")
+        networkManager.getUsers({(newUsers: [User]?, error: DMError?) -> () in
+            if let error {
+                DispatchQueue.main.async {
+                    self.presentError(error)
+                }
+            }
+        
+            if let newUsers {
+                print("UsersViewController received \(newUsers.count) users")
+                self.users = newUsers
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
     
-    func usersRetrieved(users: [User]) {
-        print("UsersViewController received \(users.count) users")
-        self.users = users
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    /*
+    3.2 Add a function called presentAlert to the UsersViewController that accepts a DMError and presents a UIAlertController with that error. Call presentError if there's a failure.
+    */
+     func presentError(_ error : DMError){
+        print(error.rawValue)
+        let alert = UIAlertController(title: "Network Error", message: error.rawValue, preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
     }
-    
+        
 }
 
 extension UsersViewController : UITableViewDelegate, UITableViewDataSource {
@@ -64,10 +65,8 @@ extension UsersViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! CustomUserCell
-        //cell.set(expense: expenses[indexPath.row])
         cell.userNameLabel.text = user.firstName
         cell.userEmailLabel.text = user.email
-        //cell.textLabel?.text = users[indexPath.row].firstName
         return cell
     }
     

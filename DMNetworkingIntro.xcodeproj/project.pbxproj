@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28E60AA42B7E506F008BBC82 /* CustomUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E60AA22B7E506F008BBC82 /* CustomUserCell.swift */; };
 		28E60AA52B7E506F008BBC82 /* CustomUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E60AA32B7E506F008BBC82 /* CustomUserCell.xib */; };
+		28E60AA72B7F1BC3008BBC82 /* DMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E60AA62B7F1BC3008BBC82 /* DMError.swift */; };
 		63485F4329E477DB00961EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63485F4229E477DB00961EA6 /* AppDelegate.swift */; };
 		63485F4529E477DB00961EA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63485F4429E477DB00961EA6 /* SceneDelegate.swift */; };
 		63485F4729E477DB00961EA6 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63485F4629E477DB00961EA6 /* UsersViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		28E60AA22B7E506F008BBC82 /* CustomUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserCell.swift; sourceTree = "<group>"; };
 		28E60AA32B7E506F008BBC82 /* CustomUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomUserCell.xib; sourceTree = "<group>"; };
+		28E60AA62B7F1BC3008BBC82 /* DMError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMError.swift; sourceTree = "<group>"; };
 		63485F3F29E477DB00961EA6 /* DMNetworkingIntro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMNetworkingIntro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63485F4229E477DB00961EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63485F4429E477DB00961EA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		63485F5629E4796500961EA6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				28E60AA62B7F1BC3008BBC82 /* DMError.swift */,
 				63485F5C29E47CCE00961EA6 /* Constants.swift */,
 			);
 			path = Utilities;
@@ -205,6 +208,7 @@
 				63485F4729E477DB00961EA6 /* UsersViewController.swift in Sources */,
 				28E60AA42B7E506F008BBC82 /* CustomUserCell.swift in Sources */,
 				63485F4329E477DB00961EA6 /* AppDelegate.swift in Sources */,
+				28E60AA72B7F1BC3008BBC82 /* DMError.swift in Sources */,
 				63485F6129E480AD00961EA6 /* User.swift in Sources */,
 				63485F5F29E4800300961EA6 /* NetworkManager.swift in Sources */,
 				63485F4529E477DB00961EA6 /* SceneDelegate.swift in Sources */,
